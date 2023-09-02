@@ -5,28 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+       @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Righteous&display=swap');
         body{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 25%;
+            font-family: 'Big Shoulders Display', cursive;
+             font-family: 'Righteous', cursive;
+             font-size: 20px;
         }
         .container{
            background-color: #ffbb5c;
            color: rgb(7, 4, 4);
-           padding: 70px;
-           padding-top: 20px;
-           border-radius: 20px;
+           height: 100vh;
+           display: grid;
+           place-items: center;
+           
+        }
+        img {
+            width: 30px;
+            margin: 0px 10px;
         }
         .container .tittle {
             background-color: whitesmoke;
             padding: 10px;
-            border-radius: 40px;
+            border-radius: 20px;
             font-size: small;
+            text-align: center;
+        }
+        .buttons {
             text-align: center;
         }
         button {
@@ -34,6 +41,8 @@
             width: 100px;
             font-size: 18px;
             border:none;
+            font-family: 'Big Shoulders Display', cursive;
+font-family: 'Righteous', cursive;
             margin: 10px;
         }
         .buttons button:nth-of-type(1){
@@ -47,16 +56,30 @@
         }
         .buttons button:nth-of-type(4){
             background-color: #ff8121;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-60%);
+        }
+        @media screen and (min-width:900px) {
+            body {
+                display: grid;
+                place-items: center;
+                margin-top: 100px;
+            }
+            .container {
+                height: 600px;
+                width: 500px;
+                border-radius: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="tittle">
-            <span></span>
+            <span>
+                <img src="images/stone.png" alt="rock-img">
+                <img src="images/paper.png" alt="paper-img">
+                <img src="images/scissor.png" alt="scissor-img">
+            </span>
+            <br>
             <h3>ROCK PAPER SCISSSORS GAME</h3>
         </div>
         <div class="players">
@@ -67,12 +90,77 @@
             <p id="result"></p>
         </div>
         <div class="buttons">
-            <button id="scissors">Scissors</button>
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button> 
+            <button id="scissors"> <span><img src="images/scissor.png" alt=""> </span>Scissors</button>
+            <button id="rock"><span><img src="images/stone.png" alt=""></span>Rock</button>
+            <button id="paper"><span><img src="images/paper.png" alt=""></span>Paper</button> 
             <br>
-            <button id="reset">Reset</button>
+            <button id="reset">Replay</button>
         </div>
+        <script>
+            let Items =["SCISSORS","PAPER","ROCK"]
+            let COMPUTER = document.getElementById("computer")
+            let HUMAN = document.getElementById("human")
+            let RESULT = document.getElementById("result")
+            let SCISSSORS = document.getElementById("scissors")
+            let ROCK = document.getElementById("rock")
+            let PAPER = document.getElementById("paper")
+            let RESET= document.getElementById("reset")
+
+
+            function getItem(){
+                let ITEMS = Math.floor(Math.random()*3)
+                return(Items[ITEMS])
+            }
+            let answer = getItem()
+
+            function resultChecker(user, computer){
+                if (user === computer){
+                    RESULT.innerHTML = "IT IS A TIE"
+                }
+                else if (user=== "SCISSORS" && computer==="PAPER"){
+                    RESULT.innerHTML ="YOU WIN!"
+                }
+                else if (user=== "ROCK" && computer==="PAPER"){
+                    RESULT.innerHTML ="YOU WIN!"
+                }
+                else if (user=== "PAPER" && computer==="ROCK"){
+                    RESULT.innerHTML ="YOU WIN!"
+                }
+                else{
+                    RESULT.innerHTML = "COMPUTER WINS !!!"
+                }
+            }
+            SCISSSORS.addEventListener("click", function(){
+                let user = "SCISSORS"
+                resultChecker(user, answer)
+                HUMAN.innerHTML="YOU: " + "SCISSORS"
+                COMPUTER.innerHTML="COMPUTER: " + answer
+            })
+            ROCK.addEventListener("click", function(){
+                let user = "ROCK"
+                resultChecker(user, answer)
+                HUMAN.innerHTML="YOU: " + "ROCK"
+                COMPUTER.innerHTML="COMPUTER: " + answer
+                answer.style.backgroundColor="white"
+            })
+            PAPER.addEventListener("click", function(){
+                let user = "PAPER"
+                resultChecker(user, answer)
+                HUMAN.innerHTML="YOU: " + "PAPER"
+                COMPUTER.innerHTML="COMPUTER: " + answer
+            })
+            RESET.addEventListener("click", function(){
+                RESULT.innerHTML=" "
+                HUMAN.innerHTML="YOU: " 
+                COMPUTER.innerHTML="COMPUTER: "
+                answer = getItem()
+
+                if (event.target !== RESET){
+                 answer= getItem()
+                }
+            })
+
+        </script>
     </div>
 </body>
 </html>
