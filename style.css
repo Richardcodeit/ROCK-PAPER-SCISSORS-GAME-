@@ -51,6 +51,11 @@ font-family: 'Righteous', cursive;
  .buttons button:nth-of-type(4){
      background-color: #ff8121;
  }
+ .score-board{
+    background-color: whitesmoke;
+    height: 70px;
+    width: 150px;
+ }
  @media screen and (min-width:900px) {
      body {
          display: grid;
@@ -58,8 +63,8 @@ font-family: 'Righteous', cursive;
          margin-top: 100px;
      }
      .container {
-         height: 600px;
-         width: 500px;
+         height: 650px;
+         width: 550px;
          border-radius: 20px;
      }
  }

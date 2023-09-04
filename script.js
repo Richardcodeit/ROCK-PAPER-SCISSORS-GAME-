@@ -1,4 +1,4 @@
-let Items =["SCISSORS","PAPER","ROCK"]
+let Items =["SCISSORS","PAPER","ROCK",]
 let COMPUTER = document.getElementById("computer")
 let HUMAN = document.getElementById("human")
 let RESULT = document.getElementById("result")
@@ -16,16 +16,16 @@ let answer = getItem()
 
 function resultChecker(user, computer){
     if (user === computer){
-        RESULT.innerHTML = "IT IS A TIE"
+        RESULT.innerHTML = "IT IS A TIE REPLAY !!!"
     }
     else if (user=== "SCISSORS" && computer==="PAPER"){
-        RESULT.innerHTML ="YOU WIN!"
+        RESULT.innerHTML ="YOU WIN !!!"
     }
     else if (user=== "ROCK" && computer==="SCISSORS"){
-        RESULT.innerHTML ="YOU WIN!"
+        RESULT.innerHTML ="YOU WIN !!!"
     }
     else if (user=== "PAPER" && computer==="ROCK"){
-        RESULT.innerHTML ="YOU WIN!"
+        RESULT.innerHTML ="YOU WIN !!!"
     }
     else{
         RESULT.innerHTML = "COMPUTER WINS !!!"
@@ -36,19 +36,23 @@ SCISSSORS.addEventListener("click", function(){
     resultChecker(user, answer)
     HUMAN.innerHTML="YOU: " + "SCISSORS"
     COMPUTER.innerHTML="COMPUTER: " + answer
+    answer = getItem()
+
 })
 ROCK.addEventListener("click", function(){
     let user = "ROCK"
     resultChecker(user, answer)
     HUMAN.innerHTML="YOU: " + "ROCK"
     COMPUTER.innerHTML="COMPUTER: " + answer
-    answer.style.backgroundColor="white"
+    answer = getItem()
 })
 PAPER.addEventListener("click", function(){
     let user = "PAPER"
     resultChecker(user, answer)
     HUMAN.innerHTML="YOU: " + "PAPER"
     COMPUTER.innerHTML="COMPUTER: " + answer
+    answer = getItem()
+
 })
 RESET.addEventListener("click", function(){
     RESULT.innerHTML=" "
