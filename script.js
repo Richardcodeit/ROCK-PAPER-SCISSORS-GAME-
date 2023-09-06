@@ -6,8 +6,20 @@ let SCISSSORS = document.getElementById("scissors")
 let ROCK = document.getElementById("rock")
 let PAPER = document.getElementById("paper")
 let RESET= document.getElementById("reset")
+let computerCount = document.querySelector(".computer-score")
+let humanCount = document.querySelector(".human-score")
+let group = document.getElementById("getscore")
+let Humanscore = -1;
+let Computerscore = -1;
+function gotscorehuman(){
+    Humanscore +=1;
+}
+function gotscoreComputer(){
+    Computerscore +=1;
 
-
+}
+let GCS = gotscoreComputer()
+let GSH = gotscorehuman()
 function getItem(){
     let ITEMS = Math.floor(Math.random()*3)
     return(Items[ITEMS])
@@ -17,18 +29,28 @@ let answer = getItem()
 function resultChecker(user, computer){
     if (user === computer){
         RESULT.innerHTML = "IT IS A TIE REPLAY !!!"
+       
     }
     else if (user=== "SCISSORS" && computer==="PAPER"){
         RESULT.innerHTML ="YOU WIN !!!"
+        GSH = gotscorehuman()
+        humanCount.innerHTML = "YOU :" + Humanscore
+
     }
     else if (user=== "ROCK" && computer==="SCISSORS"){
         RESULT.innerHTML ="YOU WIN !!!"
+        GSH = gotscorehuman()
+        humanCount.innerHTML = "YOU :" + Humanscore
     }
     else if (user=== "PAPER" && computer==="ROCK"){
         RESULT.innerHTML ="YOU WIN !!!"
+        GSH = gotscorehuman()
+        humanCount.innerHTML = "YOU :" + Humanscore
     }
     else{
         RESULT.innerHTML = "COMPUTER WINS !!!"
+        GCS = gotscoreComputer()
+        computerCount.innerHTML = "COM :" + Computerscore
     }
 }
 SCISSSORS.addEventListener("click", function(){
@@ -59,7 +81,10 @@ RESET.addEventListener("click", function(){
     HUMAN.innerHTML="YOU: " 
     COMPUTER.innerHTML="COMPUTER: "
     answer = getItem()
-
+   Humanscore = 0;
+   Computerscore = 0;
+   humanCount.innerHTML = "YOU :" + 0
+   computerCount.innerHTML = "COM :"+ 0 
     if (event.target !== RESET){
      answer= getItem()
     }
